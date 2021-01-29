@@ -32,7 +32,6 @@ node {
         }"""
         server.upload(uploadSpec)
         }
-
         stage('Artifactory download') {
             def downloadSpec = """{
               "files": [
@@ -44,10 +43,8 @@ node {
         }"""
         server.download(downloadSpec)
         }
-
         catch(err){
             currentBuild.result = 'FAILURE'
         }
         }
 
-/var/lib/jenkins/workspace/Pipeline-Project/petclinic-code/target
