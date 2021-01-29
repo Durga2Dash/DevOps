@@ -1,5 +1,6 @@
 node {
     def mvnHome
+    def server =Artifactory.server 'art_01'
     try{
         stage('Git Checkout & Preparation'){
             git branch: 'main', url: 'https://github.com/amitvashisttech/devops301-mindtree-27-Jan-2021.git'
@@ -20,8 +21,33 @@ node {
         stage('Maven Package'){
             sh "cd ${WORKSPACE}/petclinic-code && '${mvnHome}/bin/mvn' package"
         }
+        stage('Artifactory upload') {
+            def uploadSpec = """{
+              "files": [
+                 {
+                  "pattern": "/var/lib/jenkins/workspace/Pipeline-Project/petclinic-code/target/*.war",
+                   "target": "libs-snapshot"
         }
+        ]
+        }"""
+        server.upload(uploadSpec)
+        }
+
+        stage('Artifactory download') {
+            def downloadSpec = """{
+              "files": [
+                 {
+                  "pattern": "/libs-snapshot/*.war",
+                   "target": "/home/mtadmin123"
+        }
+        ]
+        }"""
+        server.download(downloadSpec)
+        }
+
         catch(err){
             currentBuild.result = 'FAILURE'
         }
         }
+
+/var/lib/jenkins/workspace/Pipeline-Project/petclinic-code/target
