@@ -25,7 +25,7 @@ node {
             def uploadSpec = """{
               "files": [
                  {
-                  "pattern": "/var/lib/jenkins/workspace/Pipeline-Project/petclinic-code/target/*.war",
+                  "pattern": "${WORKSPACE}/petclinic-code/target/*.war",
                    "target": "libs-snapshot"
         }
         ]
@@ -43,6 +43,9 @@ node {
         }"""
         server.download(downloadSpec)
         }
+        stage("Infrastructure deployment and App deployment") {
+          sh "cd /home/mtadmin123/tfcvpc/module; terraform init; >nohup.out; nohup terraform apply --auto-approve &"
+	}
 	}
         catch(err){
             currentBuild.result = 'FAILURE'
