@@ -44,7 +44,7 @@ node {
         server.download(downloadSpec)
         }
         stage("Infrastructure deployment and App deployment") {
-          sh "cd /home/mtadmin123/tfcvpc/azure/module; terraform init; >nohup.out; nohup terraform apply --auto-approve &"
+          sh "cd /home/mtadmin123/tfcvpc/azure/module/; terraform init; >nohup.out; nohup terraform apply --auto-approve &"
 	}
 	}
         catch(err){
