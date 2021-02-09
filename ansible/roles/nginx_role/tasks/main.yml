@@ -1,0 +1,27 @@
+---
+
+- name: update apt cache
+  apt: update_cache=yes 
+
+- name: Install Nginx
+  apt: name=nginx state=latest
+  notify: start nginx
+
+- name: Web files location
+  file: path=/var/www/{{ web_files_loc }} state=directory mode=0775
+
+- name: Removing default configuration
+  file: path={{ nginx_conf }}/default state=absent
+  notify: start nginx
+
+- name: Removing older configuration
+  file: path={{ nginx_conf }}/{{ conf_file }} state=absent
+
+- name: Setting up configuration
+  template: src={{ conf_file }}.j2 dest={{ nginx_conf }}/{{ conf_file }} mode=0775
+  notify: start nginx
+
+- name: Copying our webfiles
+  synchronize: src=files/ dest=/var/www/{{ web_files_loc }}/
+  notify: start nginx
+  

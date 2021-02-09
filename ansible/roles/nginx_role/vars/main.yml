@@ -1,0 +1,5 @@
+---
+
+web_files_loc: localhost
+nginx_conf: /etc/nginx/sites-enabled
+conf_file: my_nginx.conf

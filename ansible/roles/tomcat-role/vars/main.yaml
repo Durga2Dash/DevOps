@@ -1,0 +1,8 @@
+---
+
+which_java: openjdk-8-jdk
+tomcat_url: http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.44/bin/apache-tomcat-8.0.44.tar.gz
+tomcat_path: /opt
+tomcat_package: apache-tomcat-8.0.44.tar.gz
+tomcat_home: /opt/apache-tomcat-8.0.44
+artifact_path: /var/lib/jenkins/workspace/Pipeline-Project/petclinic-code/target/petclinic.war

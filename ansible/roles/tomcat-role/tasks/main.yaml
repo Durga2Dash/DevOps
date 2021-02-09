@@ -1,0 +1,22 @@
+---
+
+- name: Installing Java
+  apt: name={{ which_java }} state=present
+
+- name: Download Tomcat
+  get_url: url={{ tomcat_url }} dest={{ tomcat_path }}
+
+- name: Extract tomcat archive
+  unarchive: src={{ tomcat_path }}/{{ tomcat_package }} dest={{ tomcat_path }}/ remote_src=yes
+
+- name: Ownership
+  file: path={{ tomcat_path }} owner=azureuser group=azureuser mode=0775 state=directory recurse=yes
+
+- name: Stop Tomcat
+  shell: nohup {{ tomcat_home }}/bin/catalina.sh stop &
+
+- name: Start Tomcat
+  shell: sleep 20; nohup {{ tomcat_home }}/bin/catalina.sh start &
+
+- name: Deploy app to tomcat
+  synchronize: src={{ artifact_path }} dest={{ tomcat_home }}/webapps

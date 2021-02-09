@@ -1,0 +1,8 @@
+---
+
+- hosts: appservers
+  gather_facts: no
+  become: yes
+
+  roles:
+  - {role: '/etc/ansible/roles/tomcat-role'}
