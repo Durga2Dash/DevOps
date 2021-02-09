@@ -7,7 +7,7 @@ node {
             mvnHome = tool 'Maven'
         }
         stage('Sonar-Analysis'){
-            sh "cd ${WORKSPACE}/petclinic-code && '${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://20.44.105.120:8090 -Dsonar.login=96d1b64adb16c3b2bbc23f2de20087a526906ba5"
+            sh "cd ${WORKSPACE}/petclinic-code && '${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://zwwkb70337dns.eastus2.cloudapp.azure.com:8090 -Dsonar.login=03089cc4ef2a9406261a04a9b9b04f5af8ee3b2b"
         }
         stage('Maven Clean'){
             sh "cd ${WORKSPACE}/petclinic-code && '${mvnHome}/bin/mvn' clean"
