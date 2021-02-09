@@ -37,14 +37,14 @@ node {
               "files": [
                  {
                   "pattern": "/libs-snapshot/*.war",
-                   "target": "/home/mtadmin123"
+                   "target": "${WORKSPACE}"
         }
         ]
         }"""
         server.download(downloadSpec)
         }
         stage("Infrastructure deployment and App deployment") {
-          sh "cd /home/mtadmin123/tfcvpc/azure/module; terraform init; >nohup.out; terraform apply --auto-approve"
+          sh "cd ${WORKSPACE}/../../scripts/tfcvpc/azure/module; terraform init; >nohup.out; terraform apply --auto-approve"
 	}
 	}
         catch(err){
