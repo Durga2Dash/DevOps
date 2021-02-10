@@ -50,8 +50,14 @@ node {
         stage("Infrastructure deployment and App deployment") {
           sh "cd ${WORKSPACE}/../../scripts/tfcvpc/azure/module; terraform init; >nohup.out; terraform apply --auto-approve"
 	}
+	mailer("Succeeded")
 	}
         catch(err){
+	    mailer("Failed")
             currentBuild.result = 'FAILURE'
         }
+}
+
+def mailer(STATUS){
+	emailext body: '''Hey! The build ${STATUS} Check this -> ${BUILD_URL}''', subject: 'Reports from your latest build.', to: 'durgamadhab.dash@mindtree.com'	
 }
