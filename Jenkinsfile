@@ -36,7 +36,7 @@ node {
             def downloadSpec = """{
               "files": [
                  {
-                  "pattern": "/libs-snapshot/*.war",
+                  "pattern": "libs-snapshot/*.war",
                    "target": "${WORKSPACE}/"
         }
         ]
