@@ -1,0 +1,9 @@
+#ans-node ansible_host=20.193.229.149
+
+[webservers]
+#ans-node
+40.80.83.231
+
+[webservers:vars]
+ansible_user=azureuser
+

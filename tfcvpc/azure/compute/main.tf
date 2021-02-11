@@ -37,7 +37,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
 resource "null_resource" "my_servers" {
   provisioner "local-exec" {
-    command = "chmod +x /home/mtadmin123/tfcvpc/azure/module/shel.sh; /home/mtadmin123/tfcvpc/azure/module/shel.sh; ansible-playbook /home/mtadmin123/tomcat-play.yaml; ansible-playbook /home/mtadmin123/nginx-play.yaml"
+    command = "/var/lib/jenkins/scripts/tfcvpc/azure/module/shel.sh; ansible-playbook /var/lib/jenkins/scripts/tomcat-play.yaml; ansible-playbook /var/lib/jenkins/scripts/nginx-play.yaml"
   }
   depends_on = [azurerm_linux_virtual_machine.myterraformvm]
 }

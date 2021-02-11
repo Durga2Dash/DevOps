@@ -5,4 +5,4 @@
   become: yes
 
   roles:
-  - {role: '/etc/ansible/roles/tomcat-role'}
+  - {role: '/var/lib/jenkins/scripts/ansible/roles/tomcat-role'}

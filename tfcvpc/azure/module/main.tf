@@ -6,7 +6,7 @@ terraform {
 #    }
 #  }
   backend "local" {
-    path = "/home/mtadmin123/tfcvpc/azure/module/terraform.tfstate"
+    path = "/var/lib/jenkins/scripts/tfcvpc/azure/module/terraform.tfstate"
   }
 }
 

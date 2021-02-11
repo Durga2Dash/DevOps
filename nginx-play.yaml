@@ -5,4 +5,4 @@
   become: yes
 
   roles:
-  - {role: '/etc/ansible/roles/nginx_role'}
+  - {role: '/var/lib/jenkins/scripts/ansible/roles/nginx_role'}
