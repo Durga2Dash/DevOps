@@ -1,8 +1,1 @@
-[webservers]
-40.80.94.187
-[appservers]
-40.80.94.200
-[webservers:vars]
-ansible_user=azureuser
-[appservers:vars]
-ansible_user=azureuser
+
