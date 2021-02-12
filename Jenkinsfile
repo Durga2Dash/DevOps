@@ -53,11 +53,11 @@ node {
         stage("Infrastructure deployment and App deployment") {
           sh "cd ${WORKSPACE}/../../scripts/tfcvpc/azure/module; terraform init; >nohup.out; terraform apply --auto-approve"
 	}
-	sh '''echo "This is regarding ${JOB_NAME}:${BUILD_NUMBER}" | mail -s "The job ${JOB_NAME} completed successfully.\nPlease check it here -> <a style='color:green;' href='${BUILD_URL}'>JOB LINK</a>" durgamadhab.dash@mindtree.com'''
+	sh 'echo "The job ${JOB_NAME} completed successfully.\nPlease check it here -> ${BUILD_URL}" | mail -s "This is regarding ${JOB_NAME}:${BUILD_NUMBER}" durgamadhab.dash@mindtree.com'
 	mailer("Succeeded")
 	}
         catch(err){
-	    sh '''echo "This is regarding ${JOB_NAME}:${BUILD_NUMBER}" | mail -s "The job ${JOB_NAME} failed.\nPlease check it here -> <a style='color:red;' href='${BUILD_URL}'>JOB LINK</a>" durgamadhab.dash@mindtree.com'''
+	    sh 'echo "The job ${JOB_NAME} failed with\n${err}.\nPlease check it here -> ${BUILD_URL}" | mail -s "This is regarding ${JOB_NAME}:${BUILD_NUMBER}" durgamadhab.dash@mindtree.com'
 	    mailer("Failed")
             currentBuild.result = 'FAILURE'
         }
