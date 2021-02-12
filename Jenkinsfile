@@ -47,8 +47,7 @@ node {
         server.download(downloadSpec)
         }
         stage('Build Details'){
-		sh "touch ${WORKSPACE}/index.html; echo '<h2>This is Code Build - ${BUILD_NUMBER}</h2>\n' >> ${WORKSPACE}/index.html"
-		sh "cp ${WORKSPACE}/index.html ${WORKSPACE}/../../scripts/ansible/roles/nginx_role/files/"
+		sh "echo '<h2>This is Code Build - ${BUILD_NUMBER}</h2>\n' > ${WORKSPACE}/../../scripts/ansible/roles/nginx_role/files/index.html"
         }
         stage("Infrastructure deployment and App deployment") {
           sh "cd ${WORKSPACE}/../../scripts/tfcvpc/azure/module; terraform init; >nohup.out; terraform apply --auto-approve"
